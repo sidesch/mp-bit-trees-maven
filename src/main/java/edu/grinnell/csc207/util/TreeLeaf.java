@@ -6,7 +6,7 @@ package edu.grinnell.csc207.util;
  *
  * @author Sarah Deschamps
  */
-public class TreeLeaf implements TreeNode {
+public class TreeLeaf extends TreeNode {
 
   // +--------+------------------------------------------------------
   // | Fields |
@@ -15,15 +15,20 @@ public class TreeLeaf implements TreeNode {
   /**
    * The value stored within the leaf.
    */
-  char value;
+  String value;
 
   // +--------------+------------------------------------------------
   // | Constructors |
   // +--------------+
 
-  public TreeLeaf(char value) {
+  public TreeLeaf(String value) {
+    super();
     this.value = value;
   } // TreeLeaf(char)
+
+  public TreeLeaf() {
+    super();
+  } // TreeLeaf()
 
   // +---------+-----------------------------------------------------
   // | Methods |
@@ -34,7 +39,7 @@ public class TreeLeaf implements TreeNode {
    *
    * @return the value.
    */
-  public char getValue() {
+  public String getValue() {
     return this.value;
   } // getValue()
 
@@ -44,7 +49,17 @@ public class TreeLeaf implements TreeNode {
    * @param val
    *    The value to be put into the leaf.
    */
-  public void setValue(char val) {
+  public void setValue(String val) {
     this.value = val;
   } // setValue(char)
+
+  /**
+   * Determines whether this is a leaf.
+   *
+   * @return true if this is a leaf, false otherwise.
+   */
+  @Override
+  public boolean isLeaf() {
+    return true;
+  } // isLeaf()
 } // class TreeLeaf
