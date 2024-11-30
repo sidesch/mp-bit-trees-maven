@@ -1,0 +1,90 @@
+package edu.grinnell.csc207.util;
+
+/**
+ * A node within a tree that does not store a value,
+ * and has two children.
+ *
+ * @author Sarah Deschamps
+ */
+public class InteriorNode implements TreeNode {
+  // +--------+------------------------------------------------------
+  // | Fields |
+  // +--------+
+  
+  /**
+   * The left node.
+   */
+  TreeNode left;
+
+  /**
+   * The right node.
+   */
+  TreeNode right;
+
+  // +--------------+------------------------------------------------
+  // | Constructors |
+  // +--------------+
+
+  /**
+   * Constructor for interior node.
+   *
+   * @param left
+   *    The left subtree.
+   * @param right
+   *    The right subtree.
+   */
+  public InteriorNode(TreeNode left, TreeNode right) {
+    this.left = left;
+    this.right = right;
+  } // TreeNode(TreeNode, TreeNode)
+
+  /**
+   * Constructor for interior node.
+   */
+  public InteriorNode() {
+    this.left = null;
+    this.right = null;
+  } // TreeNode()
+
+  // +---------+-----------------------------------------------------
+  // | Methods |
+  // +---------+
+
+  /**
+   * Gets the left subtree.
+   *
+   * @return the left subtree.
+   */
+  public TreeNode getLeft() {
+    return this.left;
+  } // getLeft()
+
+  /**
+   * Gets the right subtree.
+   *
+   * @return the right subtree.
+   */
+  public TreeNode getRight() {
+    return this.right;
+  } // getRight()
+
+  /**
+   * Sets the left subtree.
+   *
+   * @param left
+   *    The tree to put into the left subtree.
+   */
+  public void setLeft(TreeNode left) {
+    this.left = left;
+  } // setLeft(TreeNode)
+
+  /**
+   * Sets the right subtree.
+   *
+   * @param right
+   *    The tree to put into the right subtree.
+   */
+  public void setRight(TreeNode right) {
+    this.right = right;
+  } // setRight(TreeNode)
+} // class TreeNode
