@@ -46,15 +46,6 @@ public class TreeNode {
     this.right = null;
   } // TreeNode()
 
-  public TreeNode(int n) {
-    if (n == 1) {
-      this.left = new TreeLeaf();
-      this.right = new TreeLeaf();
-    } // if
-    this.left = new TreeNode(n - 1);
-    this.right = new TreeNode(n - 1);
-  } // InteriorNode(int)
-
   // +---------+-----------------------------------------------------
   // | Methods |
   // +---------+
