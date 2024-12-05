@@ -9,9 +9,10 @@ A mini-project exploring bit trees (a form of binary tree) and their use in tran
 
 **Acknowledgements**
 
-* This reading on subtype polymorphism: https://rebelsky.cs.grinnell.edu/Courses/CSC207/2024Fa/readings/subtype-polymorphism.html
-* This article on String iteration: https://www.baeldung.com/java-iterate-string-characters
-*
+* The documentation for Java InputStreams: https://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html.
+* This article on String iteration: https://www.baeldung.com/java-iterate-string-characters.
+* How to turn an InputStream into a BufferedReader: https://stackoverflow.com/questions/5200187/convert-inputstream-to-bufferedreader.
+* The documentation for Java BufferedReader: https://docs.oracle.com/javase/8/docs/api/java/io/BufferedReader.html.
 
 **Instructions for use**
 

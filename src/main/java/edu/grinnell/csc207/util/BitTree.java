@@ -1,6 +1,9 @@
 package edu.grinnell.csc207.util;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 /**
@@ -97,6 +100,18 @@ public class BitTree {
     } // if-else
   } // traverseTree(String)
 
+  private void dumpHelper(PrintWriter pen, TreeNode node) {
+    if (node.isLeaf()) {
+      TreeLeaf leaf = (TreeLeaf) node;
+      pen.println("," + leaf.getValue());
+    } // if
+    pen.print("0");
+    dumpHelper(pen, node.getLeft());
+
+    pen.print("1");
+    dumpHelper(pen, node.getRight());
+  } // dumpHelper(PrintWriter, TreeNode)
+
   // +---------+-----------------------------------------------------
   // | Methods |
   // +---------+
@@ -128,16 +143,37 @@ public class BitTree {
   } // get(String, String)
 
   /**
+   * Prints all contents of the tree in CSV style
+   * using depth-first left-to-right and post-order
+   * tree traversal.
    *
+   * @param pen
+   *    The place to write the output.
    */
   public void dump(PrintWriter pen) {
-    // STUB
+    dumpHelper(pen, this.head);
   } // dump(PrintWriter)
 
   /**
+   * Reads CSV style document that loads values
+   * into the bit tree.
    *
+   * @param source
+   *    CSV style document. Takes form 'bits,value'.
+   *
+   * @throws IOException 
    */
   public void load(InputStream source) {
-    // STUB
+    BufferedReader br = new BufferedReader(new InputStreamReader(source));
+    try {
+      String line = br.readLine();
+      while (line != null) {
+        String[] words = line.split(",");
+        this.set(words[0], words[1]);
+        line = br.readLine();
+      } // while
+    } catch (IOException e) {
+      // do nothing
+    } // try-catch
   } // load(InputStream)
 } // class BitTree
