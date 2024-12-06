@@ -218,6 +218,17 @@ public class BrailleAsciiTables {
     } // try-catch
   } // createTree(BitTree, int, String)
 
+  /**
+   * Converts a given hex value to Unicode.
+   *
+   * @param hex
+   *    The hex value.
+   * @return The Unicode value in a String.
+   */
+  private static String hexToUni(String hex) {
+    return new String(Character.toChars(Integer.valueOf(hex, 16)));
+  } // hexToUni(String)
+
   // +----------------+----------------------------------------------
   // | Static methods |
   // +----------------+
@@ -233,7 +244,7 @@ public class BrailleAsciiTables {
     if (a2bTree == null) {
       createTree(a2bTree, 8, a2b);
     } // if
-    return a2bTree.get("" + letter);
+    return a2bTree.get("0" + Integer.toBinaryString((int)letter));
   } // toBraille(char)
 
   /**
@@ -247,7 +258,7 @@ public class BrailleAsciiTables {
     if (null == b2aTree) {
       createTree(b2aTree, 6, b2a);
     } // if
-    return b2aTree.get(bits);
+    return "" + (char) Integer.parseInt(b2aTree.get(bits),2);
   } // toAscii(String)
 
   /**
@@ -256,12 +267,12 @@ public class BrailleAsciiTables {
    *
    * @param bits
    *    The Braille representation of a letter, in bits.
-   * @return The Unicode representation of teh Braille letter.
+   * @return The Unicode representation of the Braille letter.
    */
   public static String toUnicode(String bits) {
     if (b2uTree == null) {
       createTree(b2uTree, 6, b2u);
     } // if
-    return b2uTree.get(bits);
+    return hexToUni(b2uTree.get(bits));
   } // toUnicode(String)
 } // BrailleAsciiTables

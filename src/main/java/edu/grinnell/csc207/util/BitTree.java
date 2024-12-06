@@ -100,19 +100,25 @@ public class BitTree {
     } // if-else
   } // traverseTree(String)
 
-  private void dumpHelper(PrintWriter pen, TreeNode node) {
+  private void dumpHelper(PrintWriter pen, TreeNode node, String soFar) {
     if (node == null) {
       return;
     } // if
-    if (node.isLeaf()) {
+    if (soFar.length() == this.height && node.isLeaf()) {
       TreeLeaf leaf = (TreeLeaf) node;
-      pen.println("," + leaf.getValue());
-    } // if
-    pen.print("0");
-    dumpHelper(pen, node.getLeft());
-
-    pen.print("1");
-    dumpHelper(pen, node.getRight());
+      if (leaf.getValue() != null) {
+        pen.println(soFar + "," + leaf.getValue());
+      } // if
+    } else if (node.isLeaf()) {
+      throw new IndexOutOfBoundsException();
+    } else {
+      if (node.getLeft() != null) {
+        dumpHelper(pen, node.getLeft(), soFar + "0");
+      } // if
+      if (node.getRight() != null) {
+        dumpHelper(pen, node.getRight(), soFar + "1");
+      } // if
+    } // if-else
   } // dumpHelper(PrintWriter, TreeNode)
 
   // +---------+-----------------------------------------------------
@@ -154,7 +160,7 @@ public class BitTree {
    *    The place to write the output.
    */
   public void dump(PrintWriter pen) {
-    dumpHelper(pen, this.head);
+    dumpHelper(pen, this.head, "");
   } // dump(PrintWriter)
 
   /**
