@@ -207,15 +207,9 @@ public class BrailleAsciiTables {
    * @param source
    *    The source of the tree, in CSV format.
    */
-  private static void createTree(BitTree tree, int height, String source) {
-    tree = new BitTree(height);
+  private static InputStream createInputStream(String source) {
     InputStream treeStream = new ByteArrayInputStream(source.getBytes());
-    tree.load(treeStream);
-    try {
-      treeStream.close();
-    } catch (IOException e) {
-      // We don't care if we can't close the stream.
-    } // try-catch
+    return treeStream;
   } // createTree(BitTree, int, String)
 
   /**
@@ -242,7 +236,14 @@ public class BrailleAsciiTables {
    */
   public static String toBraille(char letter) {
     if (a2bTree == null) {
-      createTree(a2bTree, 8, a2b);
+      InputStream a2bStream = createInputStream(a2b);
+      a2bTree = new BitTree(8);
+      a2bTree.load(a2bStream);
+      try {
+        a2bStream.close();
+      } catch (IOException e) {
+        // Do nothing.
+      } // try-catch
     } // if
     return a2bTree.get("0" + Integer.toBinaryString((int)letter));
   } // toBraille(char)
@@ -255,10 +256,17 @@ public class BrailleAsciiTables {
    * @return The ASCII representation of the letter.
    */
   public static String toAscii(String bits) {
-    if (null == b2aTree) {
-      createTree(b2aTree, 6, b2a);
+    if (b2aTree == null) {
+      InputStream b2aStream = createInputStream(b2a);
+      b2aTree = new BitTree(6);
+      b2aTree.load(b2aStream);
+      try {
+        b2aStream.close();
+      } catch (IOException e) {
+        // Do nothing.
+      } // try-catch
     } // if
-    return "" + (char) Integer.parseInt(b2aTree.get(bits),2);
+    return "" + b2aTree.get(bits);
   } // toAscii(String)
 
   /**
@@ -271,7 +279,14 @@ public class BrailleAsciiTables {
    */
   public static String toUnicode(String bits) {
     if (b2uTree == null) {
-      createTree(b2uTree, 6, b2u);
+      InputStream b2uStream = createInputStream(b2u);
+      b2uTree = new BitTree(6);
+      b2uTree.load(b2uStream);
+      try {
+        b2uStream.close();
+      } catch (IOException e) {
+        // Do nothing.
+      } // try-catch
     } // if
     return hexToUni(b2uTree.get(bits));
   } // toUnicode(String)
