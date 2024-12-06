@@ -101,6 +101,9 @@ public class BitTree {
   } // traverseTree(String)
 
   private void dumpHelper(PrintWriter pen, TreeNode node) {
+    if (node == null) {
+      return;
+    } // if
     if (node.isLeaf()) {
       TreeLeaf leaf = (TreeLeaf) node;
       pen.println("," + leaf.getValue());
