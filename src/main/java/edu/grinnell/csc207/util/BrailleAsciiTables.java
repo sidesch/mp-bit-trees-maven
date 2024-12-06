@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.io.IOException;
 
 /**
- *
+ * Static reference tables stored as BitTrees.
  *
  * @author Sarah Deschamps
  * @author Samuel A. Rebelsky
@@ -179,17 +179,17 @@ public class BrailleAsciiTables {
   // +---------------+
 
   /**
-   *
+   * The tree converting from ASCII to Braille.
    */
   static BitTree a2bTree = null;
 
   /**
-   *
+   * The tree converting from Braille to ASCII.
    */
   static BitTree b2aTree = null;
 
   /**
-   *
+   * The tree converting from Braille to Unicode.
    */
   static BitTree b2uTree = null;
 
@@ -197,39 +197,71 @@ public class BrailleAsciiTables {
   // | Static helper methods |
   // +-----------------------+
 
+  /**
+   * Loads the tree of a given height with a given String.
+   *
+   * @param tree
+   *    The tree to load.
+   * @param height
+   *    The height of the tree.
+   * @param source
+   *    The source of the tree, in CSV format.
+   */
+  private static void createTree(BitTree tree, int height, String source) {
+    tree = new BitTree(height);
+    InputStream treeStream = new ByteArrayInputStream(source.getBytes());
+    tree.load(treeStream);
+    try {
+      treeStream.close();
+    } catch (IOException e) {
+      // We don't care if we can't close the stream.
+    } // try-catch
+  } // createTree(BitTree, int, String)
+
   // +----------------+----------------------------------------------
   // | Static methods |
   // +----------------+
 
   /**
+   * Converts the given letter into Braille.
    *
+   * @param letter
+   *    The letter to convert to Braille.
+   * @return The Braille representation of the letter, in bits.
    */
   public static String toBraille(char letter) {
-    return "";  // STUB
+    if (a2bTree == null) {
+      createTree(a2bTree, 8, a2b);
+    } // if
+    return a2bTree.get("" + letter);
   } // toBraille(char)
 
   /**
+   * Converts the given Braille bits to ASCII.
    *
+   * @param bits
+   *    The Braille representation of a letter, in bits.
+   * @return The ASCII representation of the letter.
    */
   public static String toAscii(String bits) {
-    // Make sure we've loaded the braille-to-ASCII tree.
     if (null == b2aTree) {
-      b2aTree = new BitTree(6);
-      InputStream b2aStream = new ByteArrayInputStream(b2a.getBytes());
-      b2aTree.load(b2aStream);
-      try {
-        b2aStream.close();
-      } catch (IOException e) {
-        // We don't care if we can't close the stream.
-      } // try/catch
+      createTree(b2aTree, 6, b2a);
     } // if
-    return "";  // STUB
+    return b2aTree.get(bits);
   } // toAscii(String)
 
   /**
+   * Converts the given Braille bits to Unicode
+   * representations of Braille.
    *
+   * @param bits
+   *    The Braille representation of a letter, in bits.
+   * @return The Unicode representation of teh Braille letter.
    */
   public static String toUnicode(String bits) {
-    return "";  // STUB
+    if (b2uTree == null) {
+      createTree(b2uTree, 6, b2u);
+    } // if
+    return b2uTree.get(bits);
   } // toUnicode(String)
 } // BrailleAsciiTables
