@@ -15,6 +15,8 @@ A mini-project exploring bit trees (a form of binary tree) and their use in tran
 * The documentation for Java BufferedReader: https://docs.oracle.com/javase/8/docs/api/java/io/BufferedReader.html.
 * Use String when InputStream is required: https://stackoverflow.com/questions/782178/how-do-i-convert-a-string-to-an-inputstream-in-java.
 * Converting integers to Binary Strings: https://stackoverflow.com/questions/5593401/binary-representation-in-java.
+* StringBuilder documentation: https://docs.oracle.com/javase/7/docs/api/java/lang/StringBuilder.html.
+* How to convert a character into binary string: https://stackoverflow.com/questions/15606740/converting-a-character-to-its-binary-value.
 
 
 **Instructions for use**

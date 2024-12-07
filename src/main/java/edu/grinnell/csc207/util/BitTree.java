@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 /**
- * Trees intended to be used in storing mappings between fixed-length 
+ * Trees intended to be used in storing mappings between fixed-length
  * sequences of bits and corresponding values.
  *
  * @author Sarah Deschamps
@@ -56,7 +56,7 @@ public class BitTree {
    */
   private TreeLeaf traverseTree(String bits) {
     if (bits.length() != this.height) {
-      throw new IndexOutOfBoundsException();
+      throw new IndexOutOfBoundsException("Invalid length of bit string");
     } // if
     TreeNode curr = this.head;
     for (int i = 0; i < bits.length() - 1; i++) {
@@ -75,7 +75,7 @@ public class BitTree {
           curr = curr.getLeft();
         } // if-else
       } else {
-        throw new IndexOutOfBoundsException();
+        throw new IndexOutOfBoundsException("Bit string contains character other than '1' or '0'.");
       } // if-else
     } // for
     if (bits.substring(this.height - 1).equals("1")) {
@@ -94,7 +94,7 @@ public class BitTree {
       } // if-else
     } // if-else
     if (!curr.isLeaf()) {
-      throw new IndexOutOfBoundsException();
+      throw new IndexOutOfBoundsException("Invalid length of bit string");
     } else {
       return (TreeLeaf) curr;
     } // if-else
@@ -170,7 +170,7 @@ public class BitTree {
    * @param source
    *    CSV style document. Takes form 'bits,value'.
    *
-   * @throws IOException 
+   * @throws IOException
    */
   public void load(InputStream source) {
     BufferedReader br = new BufferedReader(new InputStreamReader(source));

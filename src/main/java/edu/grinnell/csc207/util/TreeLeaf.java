@@ -21,11 +21,21 @@ public class TreeLeaf extends TreeNode {
   // | Constructors |
   // +--------------+
 
+  /**
+   * Constructor for TreeLeaf that fills it with
+   * a given value.
+   *
+   * @param value
+   *    The value held within the leaf.
+   */
   public TreeLeaf(String value) {
     super();
     this.value = value;
   } // TreeLeaf(char)
 
+  /**
+   * Constructor for TreeLeaf.
+   */
   public TreeLeaf() {
     super();
   } // TreeLeaf()

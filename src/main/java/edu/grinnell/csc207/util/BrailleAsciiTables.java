@@ -18,7 +18,7 @@ public class BrailleAsciiTables {
   /**
    * Conversions from ASCII to braille.
    */
-  static final String a2b = 
+  static final String a2b =
       "01000001,100000\n"
       + "01000010,110000\n"
       + "01000011,100100\n"
@@ -200,16 +200,12 @@ public class BrailleAsciiTables {
   /**
    * Loads the tree of a given height with a given String.
    *
-   * @param tree
-   *    The tree to load.
-   * @param height
-   *    The height of the tree.
    * @param source
    *    The source of the tree, in CSV format.
+   * @return The created Input Stream.
    */
   private static InputStream createInputStream(String source) {
-    InputStream treeStream = new ByteArrayInputStream(source.getBytes());
-    return treeStream;
+    return new ByteArrayInputStream(source.getBytes());
   } // createTree(BitTree, int, String)
 
   /**
@@ -245,7 +241,11 @@ public class BrailleAsciiTables {
         // Do nothing.
       } // try-catch
     } // if
-    return a2bTree.get("0" + Integer.toBinaryString((int)letter));
+    String bits = Integer.toBinaryString((int) letter);
+    while (bits.length() < 8) {
+      bits = "0" + bits;
+    } // while
+    return a2bTree.get(bits);
   } // toBraille(char)
 
   /**
