@@ -1,6 +1,6 @@
 # mp-bit-trees-maven
 
-A mini-project exploring bit trees (a form of binary tree) and their use in translating between alphabets, particularly in translating to and from braille.
+A mini-project exploring bit trees (a form of binary tree) and their use in translating between alphabets, particularly in translating to and from Braille.
 
 **Authors**
 
@@ -21,7 +21,7 @@ A mini-project exploring bit trees (a form of binary tree) and their use in tran
 
 **Instructions for use**
 
-_Please insert instructions here._
+To use the Command Line program, first type in which form you want to convert to. The available options are "braille", "ascii", or "unicode". If given "braille", it will expect an ASCII message of all letters and spaces. If given "ascii", it will expect a series of 0's and 1's representing Braille binary that can be converted into ASCII characters. If given "unicode", it will expect an ASCII message and return the Braille message graphically using Braille unicode characters.
 
 ---
 
