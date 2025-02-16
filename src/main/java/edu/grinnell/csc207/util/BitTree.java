@@ -92,6 +92,8 @@ public class BitTree {
         curr.setLeft(new TreeLeaf());
         curr = curr.getLeft();
       } // if-else
+    } else {
+      throw new IndexOutOfBoundsException("Bit string contains character other than '1' or '0'.");
     } // if-else
     if (!curr.isLeaf()) {
       throw new IndexOutOfBoundsException("Invalid length of bit string");
